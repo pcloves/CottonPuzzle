@@ -22,6 +22,10 @@ func _show_dialog(dialogs: Array[String]):
 func _show_line(line: int):
 	_current_line = line
 	content.text = _dialogs[_current_line]
+	
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "scale", Vector2.ONE, 0.2).from(Vector2.ZERO)
 
 func _advanced():
 	if _current_line + 1 < _dialogs.size():
