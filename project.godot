@@ -9,10 +9,20 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Control",
+"class": &"DialogBubble",
+"language": &"GDScript",
+"path": "res://ui/DialogBubble.gd"
+}, {
 "base": "Area2D",
 "class": &"Interactable",
 "language": &"GDScript",
 "path": "res://objects/Interactable.gd"
+}, {
+"base": "Node2D",
+"class": &"Scene",
+"language": &"GDScript",
+"path": "res://scenes/Scene.gd"
 }, {
 "base": "Interactable",
 "class": &"Teleporter",
@@ -20,7 +30,9 @@ _global_script_classes=[{
 "path": "res://objects/Teleporter.gd"
 }]
 _global_script_class_icons={
+"DialogBubble": "",
 "Interactable": "",
+"Scene": "",
 "Teleporter": ""
 }
 
@@ -32,7 +44,6 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Events="*res://globals/Events.gd"
 SceneChanger="*res://globals/SceneChanger.tscn"
 
 [display]

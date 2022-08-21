@@ -1,4 +1,0 @@
-extends Node
-
-
-signal interact

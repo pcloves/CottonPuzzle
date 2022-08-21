@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dimgvb0hqknyt"]
+
+[ext_resource type="Texture2D" uid="uid://tlri2fr5xpmo" path="res://assets/UI/对话框点9图.9.png" id="1_5xdk7"]
+[ext_resource type="Texture2D" uid="uid://slqa2y2vnlo8" path="res://assets/UI/对话框把手.png" id="1_bxlsx"]
+[ext_resource type="Script" path="res://ui/DialogBubble.gd" id="1_kxhhb"]
+[ext_resource type="FontFile" uid="uid://bhe470b818iyo" path="res://ui/ZCool.ttf" id="2_wwn7i"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ew5bp"]
+texture = ExtResource("1_5xdk7")
+margin_left = 54.0
+margin_top = 30.0
+margin_right = 30.0
+margin_bottom = 30.0
+region_rect = Rect2(0, 0, 143, 132)
+
+[node name="DialogBubble" type="Control"]
+script = ExtResource("1_kxhhb")
+metadata/_edit_use_custom_anchors = true
+
+[node name="Content" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+offset_left = 22.0
+offset_bottom = -22.0
+grow_vertical = 0
+mouse_filter = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wwn7i")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_ew5bp")
+text = "I love you, and what is my signature?  I love you, and what is my signature?  "
+autowrap_mode = 3
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[node name="Handle" type="TextureRect" parent="."]
+grow_vertical = 0
+texture = ExtResource("1_bxlsx")
+flip_h = true
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[connection signal="gui_input" from="Content" to="." method="_on_content_gui_input"]

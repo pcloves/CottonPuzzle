@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bc0iu1e6pdiat"]
+[gd_scene load_steps=5 format=3 uid="uid://bc0iu1e6pdiat"]
 
+[ext_resource type="Script" path="res://scenes/Scene.gd" id="1_1tu58"]
 [ext_resource type="Texture2D" uid="uid://bis3xpxmd2lh8" path="res://assets/H3/H3.png" id="1_u1k3l"]
 [ext_resource type="Script" path="res://objects/Teleporter.gd" id="2_tt18g"]
 
@@ -7,6 +8,8 @@
 size = Vector2(253, 293)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_1tu58")
+background_path = NodePath("Background")
 metadata/_edit_lock_ = true
 
 [node name="Background" type="Sprite2D" parent="."]
