@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cxyjuf0exfla0"]
+
+[ext_resource type="Texture2D" uid="uid://djlr6byfgn41r" path="res://assets/H4/mail_prop.png" id="1_8ah2r"]
+[ext_resource type="Script" path="res://items/Item.gd" id="1_ropof"]
+[ext_resource type="Texture2D" uid="uid://dbw146rlmdy0o" path="res://assets/H4/mail_piece.png" id="2_8lpj7"]
+
+[resource]
+script = ExtResource("1_ropof")
+description = "邮票"
+prop_texture = ExtResource("1_8ah2r")
+scene_texture = ExtResource("2_8lpj7")

@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bq081we8s4t75"]
+[gd_scene load_steps=11 format=3 uid="uid://bq081we8s4t75"]
 
 [ext_resource type="Texture2D" uid="uid://dd15i8g88ot8k" path="res://assets/H2/H2.png" id="1_apbhk"]
 [ext_resource type="Script" path="res://scenes/H2.gd" id="1_huis7"]
 [ext_resource type="Script" path="res://objects/Teleporter.gd" id="2_5xhlx"]
 [ext_resource type="Script" path="res://objects/Interactable.gd" id="4_e8e0g"]
 [ext_resource type="PackedScene" uid="uid://dimgvb0hqknyt" path="res://ui/DialogBubble.tscn" id="5_38kns"]
+[ext_resource type="PackedScene" uid="uid://dv1wx1eb0v7hw" path="res://objects/SceneItem.tscn" id="6_x4j4k"]
+[ext_resource type="Resource" uid="uid://bf24xo64181c5" path="res://items/Key.tres" id="7_q7npv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7d8pv"]
 radius = 71.69
@@ -71,5 +73,9 @@ offset_left = 664.0
 offset_top = 520.0
 offset_right = 664.0
 offset_bottom = 520.0
+
+[node name="Key" parent="." instance=ExtResource("6_x4j4k")]
+position = Vector2(896, 880)
+_item = ExtResource("7_q7npv")
 
 [connection signal="interact" from="Grannie" to="." method="_on_grannie_interact"]

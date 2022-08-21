@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv1wx1eb0v7hw"]
+
+[ext_resource type="Script" path="res://objects/SceneItem.gd" id="1_dkk5v"]
+[ext_resource type="Resource" uid="uid://cxyjuf0exfla0" path="res://items/Mail.tres" id="2_obh6a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5h5c"]
+size = Vector2(100, 129)
+
+[node name="SceneItem" type="Area2D"]
+script = ExtResource("1_dkk5v")
+_item = ExtResource("2_obh6a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_s5h5c")
