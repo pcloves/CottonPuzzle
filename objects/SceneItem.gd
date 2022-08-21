@@ -7,13 +7,12 @@ class_name SceneItem
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 
 func _ready():
-	if _item is Item:
-		var item := _item as Item
-		
-		sprite_2d.texture = item.scene_texture
-		collision_shape_2d.shape.size = sprite_2d.texture.get_size()
-	else:
-		hide()
+	if Game.flags.has(_get_flag()):
+		queue_free()
+		return
+	
+	sprite_2d.texture = _item.scene_texture
+	collision_shape_2d.shape.size = sprite_2d.texture.get_size()
 
 func _interact():
 	super._interact()
@@ -27,4 +26,8 @@ func _interact():
 	# 等待tween动画
 	await tween.finished
 	
+	Game.flags.add(_get_flag())
 	queue_free()
+
+func _get_flag():
+	return "picked:" + _item.resource_path.get_file()

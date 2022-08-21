@@ -5,6 +5,7 @@ class_name Scene
 @export_node_path(Sprite2D) var background_path
 
 func _ready():
+	
 	var tween = create_tween()
 	
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
