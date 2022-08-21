@@ -8,11 +8,46 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Area2D",
+"class": &"Interactable",
+"language": &"GDScript",
+"path": "res://objects/Interactable.gd"
+}, {
+"base": "Interactable",
+"class": &"Teleporter",
+"language": &"GDScript",
+"path": "res://objects/Teleporter.gd"
+}]
+_global_script_class_icons={
+"Interactable": "",
+"Teleporter": ""
+}
+
 [application]
 
 config/name="CottonPuzzle"
 config/features=PackedStringArray("4.0", "Vulkan Mobile")
 config/icon="res://icon.png"
+
+[autoload]
+
+Events="*res://globals/Events.gd"
+SceneChanger="*res://globals/SceneChanger.tscn"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+
+[input]
+
+interact={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"pressed":false,"double_click":false,"script":null)
+]
+}
 
 [rendering]
 

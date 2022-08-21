@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq081we8s4t75"]
+
+[ext_resource type="Texture2D" uid="uid://dd15i8g88ot8k" path="res://assets/H2/H2.png" id="1_apbhk"]
+[ext_resource type="Script" path="res://objects/Teleporter.gd" id="2_5xhlx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7d8pv"]
+radius = 71.69
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7l52v"]
+size = Vector2(216, 371)
+
+[node name="Node2D" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_apbhk")
+metadata/_edit_lock_ = true
+
+[node name="TeleporterH1" type="Area2D" parent="."]
+script = ExtResource("2_5xhlx")
+target_scene = "res://scenes/H1.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleporterH1"]
+position = Vector2(289, 207)
+shape = SubResource("CircleShape2D_7d8pv")
+
+[node name="TeleporterH1" type="Area2D" parent="TeleporterH1"]
+script = ExtResource("2_5xhlx")
+target_scene = "res://scenes/H1.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleporterH1/TeleporterH1"]
+position = Vector2(289, 207)
+shape = SubResource("CircleShape2D_7d8pv")
+
+[node name="TeleporterH3" type="Area2D" parent="."]
+script = ExtResource("2_5xhlx")
+target_scene = "res://scenes/H1.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleporterH3"]
+position = Vector2(1000, 320)
+shape = SubResource("RectangleShape2D_7l52v")
+
+[node name="TeleporterH4" type="Area2D" parent="."]
+script = ExtResource("2_5xhlx")
+target_scene = "res://scenes/H4.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleporterH4"]
+position = Vector2(1709, 561)
+shape = SubResource("CircleShape2D_7d8pv")

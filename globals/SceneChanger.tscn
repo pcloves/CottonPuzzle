@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://efn672o1ml41"]
+
+[ext_resource type="Script" path="res://globals/SceneChanger.gd" id="1_us76w"]
+
+[node name="SceneChanger" type="CanvasLayer"]
+layer = 99
+script = ExtResource("1_us76w")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0)
