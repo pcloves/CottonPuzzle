@@ -17,8 +17,8 @@ func _ready():
 func _interact():
 	super._interact()
 	
+	#从场景中消失动画
 	var tween = create_tween()
-	
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.EASE_OUT)
 	tween.tween_property(self, "scale", Vector2.ONE * 1.5, 0.5)
 	tween.tween_property(sprite_2d, "modulate:a", 0.0, 0.5)
@@ -27,6 +27,9 @@ func _interact():
 	await tween.finished
 	
 	Game.flags.add(_get_flag())
+	#添加到背包中
+	Game.inventory.add_item(_item)
+	
 	queue_free()
 
 func _get_flag():

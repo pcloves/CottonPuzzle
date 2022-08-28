@@ -6,6 +6,6 @@
 
 [resource]
 script = ExtResource("1_ropof")
-description = "邮票"
+description = "船票"
 prop_texture = ExtResource("1_8ah2r")
 scene_texture = ExtResource("2_8lpj7")

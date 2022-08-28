@@ -78,4 +78,7 @@ offset_bottom = 520.0
 position = Vector2(896, 880)
 _item = ExtResource("7_q7npv")
 
+[node name="Mail" parent="." instance=ExtResource("6_x4j4k")]
+position = Vector2(1040, 976)
+
 [connection signal="interact" from="Grannie" to="." method="_on_grannie_interact"]

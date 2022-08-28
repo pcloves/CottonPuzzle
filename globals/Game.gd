@@ -50,14 +50,14 @@ class Inventory:
 		changed.emit()
 		
 	func select_next():
-		if _current_item_index == -1:
-			return
+		#if _current_item_index == -1:
+		#	return
 		_current_item_index = (_current_item_index + 1) % _items.size()
 		changed.emit()
 		
 	func select_pre():
-		if _current_item_index == -1:
-			return
+		#if _current_item_index == -1:
+		#	return
 		_current_item_index = (_current_item_index - 1 + _items.size()) % _items.size()
 		changed.emit()
 

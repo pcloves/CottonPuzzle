@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://4hskb1o5hhf0"]
+[gd_scene load_steps=15 format=3 uid="uid://4hskb1o5hhf0"]
 
 [ext_resource type="Texture2D" uid="uid://ocg83kpskwv4" path="res://assets/UI/道具指示文字背景黑块.png" id="1_6vk1d"]
+[ext_resource type="Script" path="res://ui/Inventory.gd" id="1_gl0xb"]
 [ext_resource type="FontFile" uid="uid://bhe470b818iyo" path="res://ui/ZCool.ttf" id="2_ipjy7"]
 [ext_resource type="Texture2D" uid="uid://j6ism2hup24y" path="res://assets/UI/道具栏的左箭头.png" id="3_7mv7q"]
 [ext_resource type="Texture2D" uid="uid://c1j6l7ubi0syx" path="res://assets/UI/道具栏的左箭头按下.png" id="4_4iek4"]
 [ext_resource type="Texture2D" uid="uid://dioe1mikyc4cr" path="res://assets/UI/道具栏的左箭头不可用.png" id="5_f0s2l"]
 [ext_resource type="Texture2D" uid="uid://e5ee16iw21xj" path="res://assets/UI/道具栏.png" id="6_jidvk"]
+[ext_resource type="Texture2D" uid="uid://b4q7o458kr4j8" path="res://assets/H2/key_prop.png" id="7_1prfe"]
 [ext_resource type="Texture2D" uid="uid://dyghpwv3emkop" path="res://assets/UI/道具栏的右箭头.png" id="7_csiib"]
+[ext_resource type="Texture2D" uid="uid://cnl3o3h55kapn" path="res://assets/UI/抓着道具的手.png" id="8_ien4u"]
 [ext_resource type="Texture2D" uid="uid://f1lgwv7q3ogl" path="res://assets/UI/道具栏的右箭头按下.png" id="8_tf3ug"]
 [ext_resource type="Texture2D" uid="uid://to33prcfv381" path="res://assets/UI/道具栏的右箭头不可用.png" id="9_n4b7y"]
 
@@ -27,39 +30,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gl0xb")
 metadata/_edit_use_custom_anchors = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_direction = 2
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -374.0
-offset_top = -328.0
-offset_right = -20.0
-offset_bottom = -20.0
+offset_right = -30.0
+offset_bottom = -30.0
 grow_horizontal = 0
 grow_vertical = 0
 metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
 
-[node name="Name" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_direction = 1
 offset_right = 354.0
 offset_bottom = 94.0
-size_flags_vertical = 6
 theme_override_styles/normal = SubResource("StyleBoxTexture_dwuld")
-text = "蓝莓"
+text = "道具描述"
 label_settings = SubResource("LabelSettings_gicew")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="VBoxContainer/Label"]
+unique_name_in_owner = true
+wait_time = 1.5
+one_shot = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 offset_top = 98.0
 offset_right = 354.0
 offset_bottom = 308.0
-size_flags_horizontal = 8
+size_flags_vertical = 10
 
 [node name="Pre" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -73,11 +79,22 @@ texture_pressed = ExtResource("4_4iek4")
 texture_disabled = ExtResource("5_f0s2l")
 
 [node name="Use" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
 offset_left = 70.0
 offset_right = 284.0
 offset_bottom = 210.0
 texture_normal = ExtResource("6_jidvk")
+
+[node name="Prop" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Use"]
+unique_name_in_owner = true
+position = Vector2(112, 110)
+z_index = 1
+texture = ExtResource("7_1prfe")
+
+[node name="Hand" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Use"]
+unique_name_in_owner = true
+position = Vector2(168, 174)
+z_index = 1
+texture = ExtResource("8_ien4u")
 
 [node name="Next" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -90,3 +107,8 @@ size_flags_vertical = 4
 texture_normal = ExtResource("7_csiib")
 texture_pressed = ExtResource("8_tf3ug")
 texture_disabled = ExtResource("9_n4b7y")
+
+[connection signal="timeout" from="VBoxContainer/Label/Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Pre" to="." method="_on_pre_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Use" to="." method="_on_use_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Next" to="." method="_on_next_pressed"]
