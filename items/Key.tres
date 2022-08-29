@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://2q7t0njunw4q" path="res://assets/H2/key.png" id="2_4jork"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("1_ropof")
 description = "信箱钥匙"
 prop_texture = ExtResource("1_1f1a1")

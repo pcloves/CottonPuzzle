@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bq081we8s4t75"]
+[gd_scene load_steps=11 format=3 uid="uid://dr6acbpw1cub3"]
 
 [ext_resource type="Texture2D" uid="uid://dd15i8g88ot8k" path="res://assets/H2/H2.png" id="1_apbhk"]
 [ext_resource type="Script" path="res://scenes/H2.gd" id="1_huis7"]
@@ -75,10 +75,7 @@ offset_right = 664.0
 offset_bottom = 520.0
 
 [node name="Key" parent="." instance=ExtResource("6_x4j4k")]
-position = Vector2(896, 880)
-_item = ExtResource("7_q7npv")
-
-[node name="Mail" parent="." instance=ExtResource("6_x4j4k")]
 position = Vector2(1040, 976)
+_item = ExtResource("7_q7npv")
 
 [connection signal="interact" from="Grannie" to="." method="_on_grannie_interact"]
