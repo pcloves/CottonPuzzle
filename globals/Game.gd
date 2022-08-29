@@ -36,6 +36,9 @@ class Inventory:
 		if item in _items:
 			return
 		_items.append(item)
+		# 这是第一个道具，那就自动选中
+		if _items.size() == 1:
+			select_next()
 		changed.emit()
 	
 	func remove_item(item: Item):
