@@ -11,6 +11,7 @@ class_name FlagSwitcher
 
 func _ready():
 	Game.flags.changed.connect(self._update_node)
+	_update_node()
 
 func _update_node():
 	if Game.flags.has(flag):

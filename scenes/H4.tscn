@@ -28,9 +28,14 @@ shape = SubResource("RectangleShape2D_w3ts5")
 
 [node name="MailBox" parent="." instance=ExtResource("4_eplja")]
 position = Vector2(1684, 682)
-scale = Vector2(0.6, 0.6)
 default_node_path = NodePath("MailBoxClose")
 switched_node_path = NodePath("MailBoxOpen")
+
+[node name="MailBoxClose" parent="MailBox" index="0"]
+position = Vector2(180, 29.9999)
+
+[node name="MailBoxOpen" parent="MailBox" index="1"]
+position = Vector2(139, 28.9999)
 
 [editable path="MailBox"]
 [editable path="MailBox/MailBoxOpen/SceneItem"]
