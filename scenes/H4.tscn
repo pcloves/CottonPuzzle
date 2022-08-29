@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3ts5"]
 size = Vector2(200.25, 314.875)
 
-[node name="Node2D" type="Node2D"]
+[node name="H4" type="Node2D"]
 script = ExtResource("1_jfkih")
 background_path = NodePath("Background")
 metadata/_edit_lock_ = true

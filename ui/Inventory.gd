@@ -19,6 +19,9 @@ func _ready():
 	_update_ui()
 
 func _input(event):
+	if event.is_action_pressed("interact"):
+		print("interact")
+	
 	if event.is_action_pressed("interact") && Game.inventory.active_item:
 		print("1")
 		# Node._input(ev)会被优先调用，后续会触发Control._input_event(ev)，最后触发
@@ -73,7 +76,10 @@ func _on_next_pressed():
 
 func _on_use_pressed():
 	
+	print("_on_use_pressed")
+	#准备使用播放动画中，不允许取消使用
 	if hand_tween && hand_tween.is_valid():
+		print("hand_tween is valid.")
 		return
 	
 	Game.inventory.active_item = Game.inventory.get_current_item()

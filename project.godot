@@ -58,7 +58,7 @@ config/icon="res://icon.png"
 
 SceneChanger="*res://globals/SceneChanger.tscn"
 Game="*res://globals/Game.gd"
-Hud="*res://globals/HUD.tscn"
+Hud="res://globals/HUD.tscn"
 
 [display]
 

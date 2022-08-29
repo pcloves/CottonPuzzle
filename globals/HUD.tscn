@@ -3,6 +3,5 @@
 [ext_resource type="PackedScene" uid="uid://4hskb1o5hhf0" path="res://ui/Inventory.tscn" id="1_kpm7h"]
 
 [node name="Hud" type="CanvasLayer"]
-layer = 0
 
 [node name="Inventory" parent="." instance=ExtResource("1_kpm7h")]
