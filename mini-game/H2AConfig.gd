@@ -86,9 +86,6 @@ func _get(property: StringName):
 		for dst in connections[index]:
 			if dst in connections[index]:
 				value |= (1 << dst)
-		
-		#if property_string == "NULL":		
-		#	print("_get:", String(property), ",value:", value)
 			
 		return value
 		
