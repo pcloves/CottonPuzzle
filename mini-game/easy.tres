@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c5cfgq6j02tru"]
+
+[ext_resource type="Script" path="res://mini-game/H2AConfig.gd" id="1_hubib"]
+
+[resource]
+script = ExtResource("1_hubib")
+placements = PackedFloat32Array(0, 6, 2, 1, 0, 3, 3)
+connections = {
+0: [],
+1: [],
+2: [],
+3: [],
+4: [],
+5: [],
+6: []
+}
