@@ -2,6 +2,9 @@
 extends Resource
 class_name H2AConfig
 
+const PrefixPlacements := "placements/"
+const PrefixConnections := "connections/"
+
 enum Slot {
 	NULL,
 	TIME,
@@ -38,14 +41,13 @@ func _get_property_list():
 	]
 	
 	#显示到右侧Inspector面板的变量
-	var options: String = ",".join(PackedStringArray(Slot.keys()))
 	for slot in Slot.size():
 		properties.append({
-			name = "placements/" + Slot.keys()[slot],
+			name = PrefixPlacements + Slot.keys()[slot],
 			type = TYPE_INT,
 			usage = PROPERTY_USAGE_EDITOR,
 			hint = PROPERTY_HINT_ENUM,
-			hint_string = options
+			hint_string = ",".join(PackedStringArray(Slot.keys()))
 		})
 		
 	for slot in Slot.size() - 1:
@@ -56,7 +58,7 @@ func _get_property_list():
 		#print("available:", available)
 		
 		properties.append({
-			name = "connections/" + Slot.keys()[slot],
+			name = PrefixConnections + Slot.keys()[slot],
 			type = TYPE_INT,
 			usage = PROPERTY_USAGE_EDITOR,
 			hint = PROPERTY_HINT_FLAGS,
@@ -70,15 +72,15 @@ func _get_property_list():
 	
 func _get(property: StringName):
 	var property_string = String(property)
-	if property_string.begins_with("placements/"):
-		property_string = property_string.trim_prefix("placements/")
+	if property_string.begins_with(PrefixPlacements):
+		property_string = property_string.trim_prefix(PrefixPlacements)
 		var index = Slot[property_string] as int
 		
 		#print("_get:", String(property), ",value:", placements[index])
 		return placements[index]
 		
-	if property_string.begins_with("connections/"):
-		property_string = property_string.trim_prefix("connections/")
+	if property_string.begins_with(PrefixConnections):
+		property_string = property_string.trim_prefix(PrefixConnections)
 		var index = Slot[property_string] as int
 		var value := 0
 		for dst in connections[index]:
@@ -95,16 +97,16 @@ func _get(property: StringName):
 func _set(property, value):
 	print("_set:", String(property), ", value:", str(value))
 	var property_string = String(property)
-	if property_string.begins_with("placements/"):
-		property_string = property_string.trim_prefix("placements/")
+	if property_string.begins_with(PrefixPlacements):
+		property_string = property_string.trim_prefix(PrefixPlacements)
 		var index = Slot[property_string] as int
 		
 		placements[index] = value
 		emit_changed()
 		return true
 		
-	if property_string.begins_with("connections/"):
-		property_string = property_string.trim_prefix("connections/")
+	if property_string.begins_with(PrefixConnections):
+		property_string = property_string.trim_prefix(PrefixConnections)
 		var index = Slot[property_string] as int
 		
 		for dst in range(index + 1, Slot.size()):
