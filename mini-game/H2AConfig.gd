@@ -2,9 +2,6 @@
 extends Resource
 class_name H2AConfig
 
-const PrefixPlacements := "placements/"
-const PrefixConnections := "connections/"
-
 enum Slot {
 	NULL,
 	TIME,
@@ -15,7 +12,7 @@ enum Slot {
 	CHOICE
 }
 
-var placements := PackedFloat32Array()
+var placements := PackedInt32Array()
 var connections : Dictionary = {}
 
 func _init():
@@ -41,13 +38,14 @@ func _get_property_list():
 	]
 	
 	#显示到右侧Inspector面板的变量
+	var options: String = ",".join(PackedStringArray(Slot.keys()))
 	for slot in Slot.size():
 		properties.append({
-			name = PrefixPlacements + Slot.keys()[slot],
+			name = "placements/" + Slot.keys()[slot],
 			type = TYPE_INT,
 			usage = PROPERTY_USAGE_EDITOR,
 			hint = PROPERTY_HINT_ENUM,
-			hint_string = ",".join(PackedStringArray(Slot.keys()))
+			hint_string = options
 		})
 		
 	for slot in Slot.size() - 1:
@@ -58,7 +56,7 @@ func _get_property_list():
 		#print("available:", available)
 		
 		properties.append({
-			name = PrefixConnections + Slot.keys()[slot],
+			name = "connections/" + Slot.keys()[slot],
 			type = TYPE_INT,
 			usage = PROPERTY_USAGE_EDITOR,
 			hint = PROPERTY_HINT_FLAGS,
@@ -72,20 +70,23 @@ func _get_property_list():
 	
 func _get(property: StringName):
 	var property_string = String(property)
-	if property_string.begins_with(PrefixPlacements):
-		property_string = property_string.trim_prefix(PrefixPlacements)
+	if property_string.begins_with("placements/"):
+		property_string = property_string.trim_prefix("placements/")
 		var index = Slot[property_string] as int
 		
 		#print("_get:", String(property), ",value:", placements[index])
 		return placements[index]
 		
-	if property_string.begins_with(PrefixConnections):
-		property_string = property_string.trim_prefix(PrefixConnections)
+	if property_string.begins_with("connections/"):
+		property_string = property_string.trim_prefix("connections/")
 		var index = Slot[property_string] as int
 		var value := 0
 		for dst in connections[index]:
 			if dst in connections[index]:
 				value |= (1 << dst)
+		
+		#if property_string == "NULL":		
+		#	print("_get:", String(property), ",value:", value)
 			
 		return value
 		
@@ -94,16 +95,16 @@ func _get(property: StringName):
 func _set(property, value):
 	print("_set:", String(property), ", value:", str(value))
 	var property_string = String(property)
-	if property_string.begins_with(PrefixPlacements):
-		property_string = property_string.trim_prefix(PrefixPlacements)
+	if property_string.begins_with("placements/"):
+		property_string = property_string.trim_prefix("placements/")
 		var index = Slot[property_string] as int
 		
 		placements[index] = value
 		emit_changed()
 		return true
 		
-	if property_string.begins_with(PrefixConnections):
-		property_string = property_string.trim_prefix(PrefixConnections)
+	if property_string.begins_with("connections/"):
+		property_string = property_string.trim_prefix("connections/")
 		var index = Slot[property_string] as int
 		
 		for dst in range(index + 1, Slot.size()):
