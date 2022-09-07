@@ -6,11 +6,11 @@
 script = ExtResource("1_hubib")
 placements = PackedFloat32Array(0, 6, 2, 1, 0, 3, 3)
 connections = {
-0: [],
-1: [],
-2: [],
-3: [],
-4: [],
+0: [6, 4, 1, 2, 3],
+1: [0],
+2: [0],
+3: [0],
+4: [0],
 5: [],
-6: []
+6: [0]
 }

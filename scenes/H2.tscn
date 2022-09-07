@@ -69,6 +69,8 @@ shape = SubResource("RectangleShape2D_wufhr")
 [node name="DialogBubble" parent="Grannie" instance=ExtResource("5_38kns")]
 unique_name_in_owner = true
 visible = false
+layout_mode = 3
+anchors_preset = 0
 offset_left = 664.0
 offset_top = 520.0
 offset_right = 664.0

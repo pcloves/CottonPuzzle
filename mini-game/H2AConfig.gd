@@ -5,7 +5,6 @@ class_name H2AConfig
 const PrefixPlacements := "placements/"
 const PrefixConnections := "connections/"
 
-
 enum Slot {
 	NULL,
 	TIME,

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://4vvj1qtfl7un"]
+[gd_scene load_steps=6 format=3 uid="uid://4vvj1qtfl7un"]
 
 [ext_resource type="Texture2D" uid="uid://cqa0vngqll1qn" path="res://assets/H2A/roomsignBG.png" id="1_w7edu"]
 [ext_resource type="Script" path="res://scenes/Scene.gd" id="1_yyy1y"]
 [ext_resource type="Script" path="res://objects/Teleporter.gd" id="2_tt18g"]
+[ext_resource type="Script" path="res://scenes/H2ABoard.gd" id="4_aoofv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_guesb"]
 radius = 65.95
@@ -25,3 +26,12 @@ target_scene = "res://scenes/H2.tscn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleporterH2"]
 position = Vector2(-1584, -704)
 shape = SubResource("CircleShape2D_guesb")
+
+[node name="Board" type="Node2D" parent="."]
+position = Vector2(912, 544)
+script = ExtResource("4_aoofv")
+_radis = 350.0
+
+[node name="LineRoot" type="Node2D" parent="Board"]
+unique_name_in_owner = true
+position = Vector2(-912, -544)
