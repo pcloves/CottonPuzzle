@@ -63,6 +63,7 @@ _global_script_class_icons={
 [application]
 
 config/name="CottonPuzzle"
+run/main_scene="res://scenes/H1.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Mobile")
 config/icon="res://icon.png"
 
