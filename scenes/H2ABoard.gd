@@ -4,7 +4,7 @@ extends Node2D
 @export var _radis: float = 100.0:
 	set(value):
 		_radis = value
-		update()
+		queue_redraw()
 
 @export var _config: Resource:
 	set(value):
