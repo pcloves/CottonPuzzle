@@ -28,7 +28,7 @@ shape = SubResource("RectangleShape2D_w3ts5")
 
 [node name="MailBox" parent="." instance=ExtResource("4_eplja")]
 position = Vector2(1684, 682)
-flag = "mail_accepted"
+flag = "mail_unlocked"
 default_node_path = NodePath("MailBoxClose")
 switched_node_path = NodePath("MailBoxOpen")
 
