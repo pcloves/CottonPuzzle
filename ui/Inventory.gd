@@ -19,11 +19,8 @@ func _ready():
 	_update_ui()
 
 func _input(event):
-	if event.is_action_pressed("interact"):
-		print("interact")
 	
 	if event.is_action_pressed("interact") && Game.inventory.active_item:
-		print("1")
 		# Node._input(ev)会被优先调用，后续会触发Control._input_event(ev)，最后触发
 		# Node._unhandled_input(ev)，为了不让后续这两个行为产生异常，因此这里延迟设置
 		Game.inventory.set_deferred("active_item", null)
@@ -54,7 +51,6 @@ func _update_ui():
 		var tween = create_tween()
 		tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 		tween.tween_property(prop, "scale", Vector2.ONE, 0.15).from(Vector2.ZERO)
-		print("2")
 
 func _show_label():
 	if label_tween && label_tween.is_valid():
@@ -76,10 +72,8 @@ func _on_next_pressed():
 
 func _on_use_pressed():
 	
-	print("_on_use_pressed")
 	#准备使用播放动画中，不允许取消使用
 	if hand_tween && hand_tween.is_valid():
-		print("hand_tween is valid.")
 		return
 	
 	Game.inventory.active_item = Game.inventory.get_current_item()
