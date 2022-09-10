@@ -5,6 +5,7 @@ class_name TitleScene
 
 func _ready():
 	load_button.disabled = not Game.has_save_file()
+	SoundManager.play_music("res://assets/Music/PaperWings.mp3")
 
 func _on_exit_pressed():
 	Game.exit_game()

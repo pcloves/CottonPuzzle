@@ -87,9 +87,11 @@ config/icon="res://icon.png"
 
 [autoload]
 
+SoundManager="*res://globals/SoundManager.tscn"
 SceneChanger="*res://globals/SceneChanger.tscn"
 Game="*res://globals/Game.gd"
 Hud="res://globals/HUD.tscn"
+ClickVisualizer="res://globals/ClickVisualizer.gd"
 
 [display]
 

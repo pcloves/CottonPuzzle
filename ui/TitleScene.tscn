@@ -35,7 +35,6 @@ texture = ExtResource("3_s52a8")
 script = ExtResource("4_pf25e")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -46,21 +45,18 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 
 [node name="New" type="Button" parent="VBoxContainer"]
-layout_mode = 2
 offset_right = 236.0
 offset_bottom = 125.0
 text = "新游戏"
 
 [node name="Load" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_top = 145.0
 offset_right = 236.0
 offset_bottom = 270.0
 text = "加载"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
-layout_mode = 2
 offset_top = 290.0
 offset_right = 236.0
 offset_bottom = 415.0
