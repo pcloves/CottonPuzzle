@@ -16,6 +16,7 @@ enum Slot {
 }
 
 var placements := PackedFloat32Array()
+# index -> array[index]
 var connections : Dictionary = {}
 
 func _init():
