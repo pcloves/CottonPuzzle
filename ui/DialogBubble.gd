@@ -4,7 +4,7 @@ class_name DialogBubble
 @onready var content: Label = %Content
 
 # 对话内容
-var _dialogs: Array[String] = [];
+@export var _dialogs: Array[String] = [];
 # 当前对话索引
 var _current_line: int = -1;
 

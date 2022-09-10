@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Node2D",
+"class": &"Board",
+"language": &"GDScript",
+"path": "res://scenes/H2ABoard.gd"
+}, {
 "base": "Control",
 "class": &"DialogBubble",
 "language": &"GDScript",
@@ -53,8 +58,14 @@ _global_script_classes=[{
 "class": &"Teleporter",
 "language": &"GDScript",
 "path": "res://objects/Teleporter.gd"
+}, {
+"base": "TextureRect",
+"class": &"TitleScene",
+"language": &"GDScript",
+"path": "res://ui/TitleScene.gd"
 }]
 _global_script_class_icons={
+"Board": "",
 "DialogBubble": "",
 "FlagSwitcher": "",
 "H2AConfig": "",
@@ -63,7 +74,8 @@ _global_script_class_icons={
 "Item": "",
 "Scene": "",
 "SceneItem": "",
-"Teleporter": ""
+"Teleporter": "",
+"TitleScene": ""
 }
 
 [application]

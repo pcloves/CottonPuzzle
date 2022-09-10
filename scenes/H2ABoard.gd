@@ -1,5 +1,6 @@
 @tool
 extends Node2D
+class_name Board
 
 @export var _radis: float = 100.0:
 	set(value):
@@ -32,6 +33,11 @@ var _stone_map: Dictionary = {}
 
 func _ready():
 	_update_board()
+
+func reset():
+	for stone in _stone_map.values():
+		_move_stone(stone, _config.placements[stone.target_slot])
+	pass
 
 func _draw():
 	_draw_slot()
@@ -82,15 +88,15 @@ func _update_board():
 			stone.name = str(slot_index)
 			stone.target_slot = slot_index
 			stone.current_slot = config.placements[slot_index]
-			stone.position = _get_slot_postion(slot_index)
+			stone.position = _get_slot_postion(stone.current_slot)
 			stone.interact.connect(self._request_move.bind(stone))
 			
 			_stone_map[slot_index] = stone
 			
 func _request_move(stone: H2AStone):
 	var aviables = H2AConfig.Slot.values()
-	for s in _stone_map.values():
-		aviables.erase(s.current_slot)
+	for _stone in _stone_map.values():
+		aviables.erase(_stone.current_slot)
 	
 	var aviable_slot := aviables[0] as int
 	if aviable_slot in _config.connections[stone.current_slot]:
@@ -102,7 +108,6 @@ func _move_stone(stone: H2AStone, slot: int):
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	
 	tween.tween_property(stone, "position", _get_slot_postion(slot), 0.2)
-	#tween.tween_interval(1.0)
 	tween.tween_callback(self._check)
 	
 func _check():
@@ -115,6 +120,8 @@ func _check():
 	for stone in _stone_map.values():
 		tween.tween_property(stone, "modulate:a", 0.0, 0.2)
 		tween.tween_property(stone, "modulate:a", 1.0, 0.2)
+	
+	tween.tween_interval(0.5)
 	
 	await tween.finished
 	

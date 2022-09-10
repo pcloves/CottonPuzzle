@@ -11,6 +11,7 @@
 size = Vector2(152, 208)
 
 [node name="MailBox" type="Node2D"]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_sk6lj")
 
 [node name="MailBoxClose" type="Sprite2D" parent="."]

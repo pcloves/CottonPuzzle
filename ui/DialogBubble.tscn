@@ -14,6 +14,8 @@ margin_bottom = 30.0
 region_rect = Rect2(0, 0, 143, 132)
 
 [node name="DialogBubble" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_kxhhb")
 metadata/_edit_use_custom_anchors = true
 

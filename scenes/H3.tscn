@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc0iu1e6pdiat"]
+[gd_scene load_steps=7 format=3 uid="uid://bc0iu1e6pdiat"]
 
 [ext_resource type="Script" path="res://scenes/Scene.gd" id="1_1tu58"]
 [ext_resource type="Texture2D" uid="uid://bis3xpxmd2lh8" path="res://assets/H3/H3.png" id="1_u1k3l"]
 [ext_resource type="Script" path="res://objects/Teleporter.gd" id="2_tt18g"]
+[ext_resource type="PackedScene" uid="uid://dv1wx1eb0v7hw" path="res://objects/SceneItem.tscn" id="4_8jlm0"]
+[ext_resource type="Resource" uid="uid://bf24xo64181c5" path="res://items/Key.tres" id="5_d271l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54yb8"]
-size = Vector2(253, 293)
+size = Vector2(446.5, 482.5)
 
 [node name="H3" type="Node2D"]
 script = ExtResource("1_1tu58")
@@ -23,14 +25,9 @@ script = ExtResource("2_tt18g")
 target_scene = "res://scenes/H2.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleporterH2"]
-position = Vector2(48, 120)
+position = Vector2(-48.75, 25.25)
 shape = SubResource("RectangleShape2D_54yb8")
 
-[node name="TeleporterH3" type="Area2D" parent="."]
-position = Vector2(1744, 816)
-script = ExtResource("2_tt18g")
-target_scene = "res://scenes/H2.tscn"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleporterH3"]
-position = Vector2(48, 120)
-shape = SubResource("RectangleShape2D_54yb8")
+[node name="Key" parent="." instance=ExtResource("4_8jlm0")]
+position = Vector2(1128, 992)
+_item = ExtResource("5_d271l")

@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://dlwacobmdmbdu"]
+
+[ext_resource type="Texture2D" uid="uid://qntlrlak1un2" path="res://assets/UI/title_button.png" id="1_ehwin"]
+[ext_resource type="FontFile" uid="uid://bhe470b818iyo" path="res://ui/ZCool.ttf" id="2_p3vcf"]
+[ext_resource type="Texture2D" uid="uid://bsi5k1pb01r6e" path="res://assets/UI/title_screen.png" id="3_s52a8"]
+[ext_resource type="Script" path="res://ui/TitleScene.gd" id="4_pf25e"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fuudd"]
+texture = ExtResource("1_ehwin")
+margin_left = 22.0
+margin_top = 30.0
+margin_right = 22.0
+margin_bottom = 30.0
+region_rect = Rect2(0, 0, 340, 140)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n7g78"]
+
+[sub_resource type="Theme" id="Theme_3iiko"]
+default_font = ExtResource("2_p3vcf")
+default_font_size = 64
+Button/styles/disabled = SubResource("StyleBoxTexture_fuudd")
+Button/styles/focus = SubResource("StyleBoxEmpty_n7g78")
+Button/styles/hover = SubResource("StyleBoxTexture_fuudd")
+Button/styles/normal = SubResource("StyleBoxTexture_fuudd")
+Button/styles/pressed = SubResource("StyleBoxTexture_fuudd")
+
+[node name="TitleScreen" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_3iiko")
+texture = ExtResource("3_s52a8")
+script = ExtResource("4_pf25e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="New" type="Button" parent="VBoxContainer"]
+offset_right = 236.0
+offset_bottom = 125.0
+text = "新游戏"
+
+[node name="Load" type="Button" parent="VBoxContainer"]
+offset_top = 145.0
+offset_right = 236.0
+offset_bottom = 270.0
+text = "加载"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+offset_top = 290.0
+offset_right = 236.0
+offset_bottom = 415.0
+text = "退出"

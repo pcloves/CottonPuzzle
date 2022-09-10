@@ -66,3 +66,6 @@ class Inventory:
 
 var flags: Flags = Flags.new()
 var inventory: Inventory = Inventory.new()
+
+func back_to_title():
+	SceneChanger.change_scene("res://ui/TitleScene.tscn")

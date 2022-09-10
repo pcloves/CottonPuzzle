@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_hubib")
-placements = PackedFloat32Array(0, 1, 2, 3, 6, 5, 4)
+placements = PackedFloat32Array(0, 1, 6, 4, 3, 5, 2)
 connections = {
 0: [1, 2, 3, 6, 4, 5],
 1: [0, 2, 6, 3],

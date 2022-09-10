@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dx03gd4yyufuf"]
+[gd_scene load_steps=4 format=3 uid="uid://dx03gd4yyufuf"]
 
 [ext_resource type="Script" path="res://mini-game/H2AStone.gd" id="1_7cqho"]
+[ext_resource type="Texture2D" uid="uid://bhbrwkd2y0hyo" path="res://assets/H2A/SS_04_x.png" id="2_6vuwy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ib82f"]
 radius = 50.0
@@ -16,3 +17,4 @@ shape = SubResource("CircleShape2D_ib82f")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
+texture = ExtResource("2_6vuwy")

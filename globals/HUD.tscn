@@ -1,7 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://trf0f6v81rus"]
+[gd_scene load_steps=4 format=3 uid="uid://trf0f6v81rus"]
 
+[ext_resource type="Script" path="res://globals/HUD.gd" id="1_gw2al"]
 [ext_resource type="PackedScene" uid="uid://4hskb1o5hhf0" path="res://ui/Inventory.tscn" id="1_kpm7h"]
+[ext_resource type="Texture2D" uid="uid://kf2pmgmcwyiv" path="res://assets/UI/menu.png" id="2_ho4ic"]
 
 [node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_gw2al")
 
 [node name="Inventory" parent="." instance=ExtResource("1_kpm7h")]
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Menu" type="TextureButton" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 24.0
+offset_right = -24.0
+grow_horizontal = 0
+texture_normal = ExtResource("2_ho4ic")
+
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

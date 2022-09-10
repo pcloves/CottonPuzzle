@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://objects/Teleporter.gd" id="2_5xhlx"]
 [ext_resource type="Script" path="res://objects/Interactable.gd" id="4_e8e0g"]
 [ext_resource type="PackedScene" uid="uid://dimgvb0hqknyt" path="res://ui/DialogBubble.tscn" id="5_38kns"]
-[ext_resource type="PackedScene" uid="uid://dv1wx1eb0v7hw" path="res://objects/SceneItem.tscn" id="6_x4j4k"]
-[ext_resource type="Resource" uid="uid://bf24xo64181c5" path="res://items/Key.tres" id="7_q7npv"]
+[ext_resource type="Script" path="res://objects/FlagSwitcher.gd" id="8_tcbeb"]
+[ext_resource type="Texture2D" uid="uid://bgmvqax1c7wjo" path="res://assets/H2/door.png" id="9_pymrj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7d8pv"]
 radius = 71.69
@@ -43,14 +43,6 @@ target_scene = "res://scenes/H1.tscn"
 position = Vector2(289, 207)
 shape = SubResource("CircleShape2D_7d8pv")
 
-[node name="TeleporterH3" type="Area2D" parent="."]
-script = ExtResource("2_5xhlx")
-target_scene = "res://scenes/H1.tscn"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleporterH3"]
-position = Vector2(1000, 320)
-shape = SubResource("RectangleShape2D_7l52v")
-
 [node name="TeleporterH4" type="Area2D" parent="."]
 script = ExtResource("2_5xhlx")
 target_scene = "res://scenes/H4.tscn"
@@ -58,6 +50,32 @@ target_scene = "res://scenes/H4.tscn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleporterH4"]
 position = Vector2(1709, 561)
 shape = SubResource("CircleShape2D_7d8pv")
+
+[node name="FlagSwitcher" type="Node2D" parent="."]
+position = Vector2(976, 320)
+script = ExtResource("8_tcbeb")
+flag = "h2a_unlocked"
+default_node_path = NodePath("TeleporterH2A")
+switched_node_path = NodePath("TeleporterH3")
+
+[node name="TeleporterH2A" type="Area2D" parent="FlagSwitcher"]
+script = ExtResource("2_5xhlx")
+target_scene = "res://scenes/H2A.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlagSwitcher/TeleporterH2A"]
+position = Vector2(24, 0)
+shape = SubResource("RectangleShape2D_7l52v")
+
+[node name="Sprite2d" type="Sprite2D" parent="FlagSwitcher/TeleporterH2A"]
+texture = ExtResource("9_pymrj")
+
+[node name="TeleporterH3" type="Area2D" parent="FlagSwitcher"]
+script = ExtResource("2_5xhlx")
+target_scene = "res://scenes/H3.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlagSwitcher/TeleporterH3"]
+position = Vector2(24, 0)
+shape = SubResource("RectangleShape2D_7l52v")
 
 [node name="Grannie" type="Area2D" parent="."]
 script = ExtResource("4_e8e0g")
@@ -69,15 +87,9 @@ shape = SubResource("RectangleShape2D_wufhr")
 [node name="DialogBubble" parent="Grannie" instance=ExtResource("5_38kns")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 3
-anchors_preset = 0
 offset_left = 664.0
 offset_top = 520.0
 offset_right = 664.0
 offset_bottom = 520.0
-
-[node name="Key" parent="." instance=ExtResource("6_x4j4k")]
-position = Vector2(1040, 976)
-_item = ExtResource("7_q7npv")
 
 [connection signal="interact" from="Grannie" to="." method="_on_grannie_interact"]
