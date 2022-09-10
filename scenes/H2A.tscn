@@ -37,3 +37,6 @@ _config = ExtResource("5_gihhv")
 [node name="LineRoot" type="Node2D" parent="Board"]
 unique_name_in_owner = true
 show_behind_parent = true
+
+[node name="StoneRoot" type="Node2D" parent="Board"]
+unique_name_in_owner = true

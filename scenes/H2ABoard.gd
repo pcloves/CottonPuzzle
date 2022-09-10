@@ -22,8 +22,13 @@ extends Node2D
 const LINE_TEXTURE: Texture2D = preload("res://assets/H2A/CIRCLELINE.png")
 const SLOT_TEXTURE: Texture2D = preload("res://assets/H2A/CIRCLE.png")
 
+const STONE = preload("res://mini-game/H2AStone.tscn")
+
+# slot_index : H2AStone
+var _stone_map: Dictionary = {}
 
 @onready var line_root = %LineRoot
+@onready var stone_root = %StoneRoot
 
 func _ready():
 	_update_board()
@@ -38,11 +43,13 @@ func _draw_slot():
 
 func _update_board():
 	
+	if !is_inside_tree():
+		return
+	
 	# 移除所有连接节点
-	var children := line_root.get_children()
-	for child in children:
-		line_root.remove_child(child)
-		child.queue_free()
+	_remove_all_child(line_root)
+	# 移除所有棋子节点
+	_remove_all_child(stone_root)
 	
 	var config: H2AConfig = _config as H2AConfig
 	if config:
@@ -51,9 +58,9 @@ func _update_board():
 		for src_index in src_arr:
 			var dst_arr: Array = connections[src_index]
 			for dst_index in dst_arr:
-				var name = str(min(src_index, dst_index)) + "_" + str(max(src_index, dst_index))
+				var _name = str(min(src_index, dst_index)) + "_" + str(max(src_index, dst_index))
 				#连线是双向的，检测是否已经添加过
-				if line_root.has_node(name):
+				if line_root.has_node(_name):
 					continue
 				
 				var line = Line2D.new()
@@ -64,10 +71,61 @@ func _update_board():
 				line.width = LINE_TEXTURE.get_height()
 				line.texture_mode = Line2D.LINE_TEXTURE_TILE
 				line.default_color = Color.WHITE
-				line.name = name
+				line.name = _name
 				
 				line_root.add_child(line)
+		
+		for slot_index in range(1, H2AConfig.Slot.size()):
+			var stone = STONE.instantiate()
+			stone_root.add_child(stone)			
+			
+			stone.name = str(slot_index)
+			stone.target_slot = slot_index
+			stone.current_slot = config.placements[slot_index]
+			stone.position = _get_slot_postion(slot_index)
+			stone.interact.connect(self._request_move.bind(stone))
+			
+			_stone_map[slot_index] = stone
+			
+func _request_move(stone: H2AStone):
+	var aviables = H2AConfig.Slot.values()
+	for s in _stone_map.values():
+		aviables.erase(s.current_slot)
 	
+	var aviable_slot := aviables[0] as int
+	if aviable_slot in _config.connections[stone.current_slot]:
+		_move_stone(stone, aviable_slot)
+	
+func _move_stone(stone: H2AStone, slot: int):
+	
+	stone.current_slot = slot
+	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	
+	tween.tween_property(stone, "position", _get_slot_postion(slot), 0.2)
+	#tween.tween_interval(1.0)
+	tween.tween_callback(self._check)
+	
+func _check():
+	
+	for stone in _stone_map.values():
+		if !stone.is_pass():
+			return
 
+	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	for stone in _stone_map.values():
+		tween.tween_property(stone, "modulate:a", 0.0, 0.2)
+		tween.tween_property(stone, "modulate:a", 1.0, 0.2)
+	
+	await tween.finished
+	
+	Game.flags.add("h2a_unlocked")
+	SceneChanger.change_scene("res://scenes/H2.tscn")	
+	
 func _get_slot_postion(slot_index: int) -> Vector2:
 	return Vector2.DOWN.rotated(TAU / H2AConfig.Slot.size() * slot_index) * _radis
+
+func _remove_all_child(node: Node):
+	var children := node.get_children()
+	for child in children:
+		node.remove_child(child)
+		child.queue_free()

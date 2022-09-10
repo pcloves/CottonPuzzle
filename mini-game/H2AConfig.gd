@@ -42,7 +42,7 @@ func _get_property_list():
 	]
 	
 	#显示到右侧Inspector面板的变量
-	for slot in Slot.size():
+	for slot in range(1, Slot.size()):
 		properties.append({
 			name = PrefixPlacements + Slot.keys()[slot],
 			type = TYPE_INT,

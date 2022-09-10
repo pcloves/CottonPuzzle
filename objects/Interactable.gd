@@ -9,3 +9,4 @@ func _input_event(_viewport, event, _shape_idx):
 	
 func _interact():
 	interact.emit()
+	print("interact:", self)
