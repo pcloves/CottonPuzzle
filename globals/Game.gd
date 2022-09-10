@@ -1,5 +1,7 @@
 extends Node
 
+const SAVE_PATH := "user://data.sav"
+
 class Flags:
 	signal changed
 	
@@ -14,6 +16,19 @@ class Flags:
 		else:
 			_flags.append(flag)
 			changed.emit()
+			
+	func to_dict():
+		return {
+			"flags": _flags,
+		}
+		
+	func from_dict(dict: Dictionary):
+		_flags = dict["flags"]
+		changed.emit()
+
+	func reset():
+		_flags.clear()
+		changed.emit()
 
 class Inventory:
 	signal changed
@@ -64,8 +79,74 @@ class Inventory:
 		_current_item_index = (_current_item_index - 1 + _items.size()) % _items.size()
 		changed.emit()
 
+	func to_dict():
+		
+		var names: Array[String] = []
+		for item in _items:
+			names.append(item.resource_path)
+		
+		return {
+			"items": names,
+			"current_item_index": _current_item_index
+		}
+		
+	func from_dict(dict: Dictionary):
+		
+		_current_item_index = dict["current_item_index"]
+		_items.clear()
+		
+		for item_path in dict["items"]:
+			_items.append(load(item_path))
+		
+		changed.emit()
+
+	func reset():
+		_items.clear()
+		_current_item_index = -1
+		changed.emit()
+
+
 var flags: Flags = Flags.new()
 var inventory: Inventory = Inventory.new()
 
 func back_to_title():
+	save_game()
 	SceneChanger.change_scene("res://ui/TitleScene.tscn")
+
+func new_game():
+	inventory.reset()
+	flags.reset()
+	SceneChanger.change_scene("res://scenes/H1.tscn")
+
+func save_game():
+	var file = File.new()
+	if file.open(SAVE_PATH, File.WRITE) != OK:
+		return
+	
+	var data := {
+		"inventory": inventory.to_dict(),
+		"flags": flags.to_dict(),
+		"current_scene_file_path": get_tree().current_scene.get_scene_file_path()
+	}
+	
+	
+	file.store_string(JSON.stringify(data, "\t"))
+	file.close()
+	
+func has_save_file() -> bool:
+	return File.new().file_exists(SAVE_PATH)	
+
+	
+func load_game():
+	var file = File.new()
+	if file.open(SAVE_PATH, File.READ) != OK:
+		return
+		
+	var data: Dictionary = JSON.parse_string(file.get_as_text())
+	
+	inventory.from_dict(data["inventory"])
+	flags.from_dict(data["flags"])
+	SceneChanger.change_scene(data["current_scene_file_path"])
+	
+func exit_game():
+	get_tree().quit(0)
