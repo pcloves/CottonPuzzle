@@ -10,7 +10,7 @@ func change_scene(path: String):
 	#透明渐变黑
 	tween.tween_property(color_rect, "color:a", 1.0, 0.2)
 	#切换场景
-	tween.tween_callback(get_tree().change_scene.bind(path))
+	tween.tween_callback(get_tree().change_scene_to_file.bind(path))
 	#黑色渐变透明
 	tween.tween_property(color_rect, "color:a", 0.0, 0.2)
 	#隐藏
