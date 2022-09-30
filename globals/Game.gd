@@ -119,8 +119,8 @@ func new_game():
 	SceneChanger.change_scene("res://scenes/H1.tscn")
 
 func save_game():
-	var file = File.new()
-	if file.open(SAVE_PATH, File.WRITE) != OK:
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if file == null:
 		return
 	
 	var data := {
@@ -129,17 +129,15 @@ func save_game():
 		"current_scene_file_path": get_tree().current_scene.get_scene_file_path()
 	}
 	
-	
 	file.store_string(JSON.stringify(data, "\t"))
-	file.close()
 	
 func has_save_file() -> bool:
-	return File.new().file_exists(SAVE_PATH)	
+	return FileAccess.file_exists(SAVE_PATH)	
 
 	
 func load_game():
-	var file = File.new()
-	if file.open(SAVE_PATH, File.READ) != OK:
+	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if file == null:
 		return
 		
 	var data: Dictionary = JSON.parse_string(file.get_as_text())
