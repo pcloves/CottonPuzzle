@@ -93,6 +93,10 @@ Game="*res://globals/Game.gd"
 Hud="res://globals/HUD.tscn"
 ClickVisualizer="res://globals/ClickVisualizer.gd"
 
+[debug]
+
+gdscript/warnings/return_value_discarded=0
+
 [display]
 
 window/size/viewport_width=1920
