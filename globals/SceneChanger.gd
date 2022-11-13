@@ -58,8 +58,8 @@ func _process(_delta):
 	
 	match status:
 		ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS:
-			progress_bar.ratio = progress[0]
-			print("load in progress:", progress_bar.ratio)
+			print("load in progress:", progress[0])
+			progress_bar.value = progress[0] * 100
 		ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
 			print("load loaded")
 			scene_loaded.emit()
