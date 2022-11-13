@@ -25,7 +25,7 @@ func change_scene(path: String):
 	
 	print("----load request----")
 	#多线程加载
-	ResourceLoader.load_threaded_request(path, "", true)
+	ResourceLoader.load_threaded_request(path)
 	
 	loading = true
 	progress_bar.visible = true
